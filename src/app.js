@@ -39,7 +39,7 @@ app.get('/about', (req, res) => {
 
 app.get('/help', (req, res) => {
     res.render('help', {
-        helpText: 'Version 1.0',
+        helpText: 'Version 1.6',
         title: 'Help',
         name: 'Sumit Dey'
     })
