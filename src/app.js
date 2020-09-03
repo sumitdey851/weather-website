@@ -46,18 +46,18 @@ app.get('/help', (req, res) => {
 })
 
 app.get('/weather', (req, res) => {
-    //enforce an address query
-    const address = req.query.address
+    //enforce an address query, all queries are received in req
+    const address = req.query.address   //getting the address from req object
     if(!address){
         return res.send({
             error: 'You must provide an address!'
         })
     }
-    geocode(address, (error, {latitude, longitude, location}={}) => {
+    geocode(address, (error, {latitude, longitude, location}={}) => {   //getting geocode
         if(error){
             return res.send({ error })
         }
-        forecast(latitude, longitude, (error, forecastData) => {
+        forecast(latitude, longitude, (error, forecastData) => {    //getting forecast data
             if(error){
                 return res.send({ error })
             }
@@ -70,7 +70,7 @@ app.get('/weather', (req, res) => {
     })
 })
 
-app.get('/help/*', (req, res) => {
+app.get('/help/*', (req, res) => {  //for urls that contain anything typed after /help/
     res.render('404', {
         title: 'Error 404!',
         errorMessage: 'Help article not found!',
